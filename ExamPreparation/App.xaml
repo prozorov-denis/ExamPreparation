@@ -1,0 +1,38 @@
+﻿<Application x:Class="ExamPreparation.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ExamPreparation"
+             StartupUri="Views/StudentView.xaml"
+             xmlns:viewmodels="clr-namespace:ExamPreparation.ViewModels"
+             xmlns:views="clr-namespace:ExamPreparation.Views">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewmodels:AccountViewModel}">
+                <views:AccountView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:MassagesViewModel}">
+                <views:MassagesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ModulesViewModel}">
+                <views:ModulesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:PlanViewModel}">
+                <views:PlanView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+                <views:SettingsView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

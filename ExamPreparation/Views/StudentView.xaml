@@ -1,0 +1,67 @@
+﻿<Window x:Class="ExamPreparation.Views.StudentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamPreparation.Views"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="16"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="StudentView" Height="450" Width="800"
+        xmlns:uc="clr-namespace:ExamPreparation.UserControls">
+    <Grid>
+        <TabControl DockPanel.Dock="Left" Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
+
+            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" >
+                <TabItem.Header>
+                    <materialDesign:PackIcon Kind="Account" Width="32" Height="32" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <local:AccountView/>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon Kind="ClipboardListOutline" Width="32" Height="32" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <local:PlanView/>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon Kind="BookmarkCheckOutline" Width="32" Height="32" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <local:ModulesView/>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon Kind="MessageTextOutline" Width="32" Height="32" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <local:MassagesView/>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+                <TabItem.Header>
+                    <materialDesign:PackIcon Kind="CogOutline" Width="32" Height="32" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <local:SettingsView/>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
