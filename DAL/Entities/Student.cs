@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,14 +6,15 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Students
+    [Table("Student")]
+    public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Students()
+        public Student()
         {
-            Messages = new HashSet<Messages>();
-            Plans = new HashSet<Plans>();
-            Results = new HashSet<Results>();
+            Message = new HashSet<Message>();
+            Module = new HashSet<Module>();
+            Result = new HashSet<Result>();
         }
 
         [Key]
@@ -22,17 +23,22 @@ namespace DAL
 
         public int? Teachers_ID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Messages> Messages { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? Exam_Date { get; set; }
+
+        public int? Exam_Score { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Plans> Plans { get; set; }
+        public virtual ICollection<Message> Message { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Results> Results { get; set; }
+        public virtual ICollection<Module> Module { get; set; }
 
-        public virtual Teachers Teachers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Result> Result { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual Teacher Teacher { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

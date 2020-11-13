@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,152 +11,119 @@ namespace DAL.Repositories
     public class EFUnitOfWork : IUnitOfWork
     {
         ExamPreparationDb db;
-        MessagesRepository messagesRepository;
-        ModulesRepository modulesRepository;
-        PlansRepository plansRepository;
-        ResultsRepository resultsRepository;
-        SolutionsRepository solutionsRepository;
-        StudentsRepository studentsRepository;
-        TasksRepository tasksRepository;
-        TeachersRepository teachersRepository;
-        TheoryRepository theoryRepository;
-        TopicsRepository topicsRepository;
-        User_TypesRepository user_TypesRepository;
-        UsersRepository usersRepository;
-        ReportsRepository reportsRepository;
+        MessageRepository messageRepository;
+        ModuleRepository moduleRepository;
+        ResultRepository resultRepository;
+        StudentRepository studentRepository;
+        TaskRepository taskRepository;
+        TeacherRepository teacherRepository;
+        TopicRepository topicRepository;
+        User_TypeRepository user_TypeRepository;
+        UserRepository userRepository;
+        ReportsRepository reportRepository;
 
         public EFUnitOfWork()
         {
             db = new ExamPreparationDb();
         }
 
-        public IRepository<Messages> IMessagesRepository
+        public IRepository<Message> Messages
         {
             get
             {
-                if (messagesRepository == null)
-                    messagesRepository = new MessagesRepository(db);
-                return messagesRepository;
+                if (messageRepository == null)
+                    messageRepository = new MessageRepository(db);
+                return messageRepository;
             }
         }
 
-        public IRepository<Modules> IModulesRepository
+        public IRepository<Module> Modules
         {
             get
             {
-                if (modulesRepository == null)
-                    modulesRepository = new ModulesRepository(db);
-                return modulesRepository;
+                if (moduleRepository == null)
+                    moduleRepository = new ModuleRepository(db);
+                return moduleRepository;
+            }
+        }   
+
+        public IRepository<Result> Results
+        {
+            get
+            {
+                if (resultRepository == null)
+                    resultRepository = new ResultRepository(db);
+                return resultRepository;
             }
         }
 
-        public IRepository<Plans> IPlansRepository
+        public IRepository<Student> Students
         {
             get
             {
-                if (plansRepository == null)
-                    plansRepository = new PlansRepository(db);
-                return plansRepository;
+                if (studentRepository == null)
+                    studentRepository = new StudentRepository(db);
+                return studentRepository;
             }
         }
 
-        public IRepository<Results> IResultsRepository
+        public IRepository<Entities.Task> Tasks
         {
             get
             {
-                if (resultsRepository == null)
-                    resultsRepository = new ResultsRepository(db);
-                return resultsRepository;
+                if (taskRepository == null)
+                    taskRepository = new TaskRepository(db);
+                return taskRepository;
             }
         }
 
-        public IRepository<Solutions> ISolutionsRepository
+        public IRepository<Teacher> Teachers
         {
             get
             {
-                if (solutionsRepository == null)
-                    solutionsRepository = new SolutionsRepository(db);
-                return solutionsRepository;
+                if (teacherRepository == null)
+                    teacherRepository = new TeacherRepository(db);
+                return teacherRepository;
             }
         }
 
-        public IRepository<Students> IStudentsRepository
+        public IRepository<Topic> Topics
         {
             get
             {
-                if (studentsRepository == null)
-                    studentsRepository = new StudentsRepository(db);
-                return studentsRepository;
+                if (topicRepository == null)
+                    topicRepository = new TopicRepository(db);
+                return topicRepository;
             }
         }
 
-        public IRepository<Tasks> ITasksRepository
+        public IRepository<User_Type> User_Types
         {
             get
             {
-                if (tasksRepository == null)
-                    tasksRepository = new TasksRepository(db);
-                return tasksRepository;
+                if (user_TypeRepository == null)
+                    user_TypeRepository = new User_TypeRepository(db);
+                return user_TypeRepository;
             }
         }
 
-        public IRepository<Teachers> ITeachersRepository
+        public IRepository<User> Users
         {
             get
             {
-                if (teachersRepository == null)
-                    teachersRepository = new TeachersRepository(db);
-                return teachersRepository;
+                if (userRepository == null)
+                    userRepository = new UserRepository(db);
+                return userRepository;
             }
         }
 
-        public IRepository<Theory> ITheoryRepository
+        public IReportsRepository Reports
         {
             get
             {
-                if (theoryRepository == null)
-                    theoryRepository = new TheoryRepository(db);
-                return theoryRepository;
-            }
-        }
-
-        public IRepository<Topics> ITopicsRepository
-        {
-            get
-            {
-                if (topicsRepository == null)
-                    topicsRepository = new TopicsRepository(db);
-                return topicsRepository;
-            }
-        }
-
-        public IRepository<User_Types> IUser_TypesRepository
-        {
-            get
-            {
-                if (user_TypesRepository == null)
-                    user_TypesRepository = new User_TypesRepository(db);
-                return user_TypesRepository;
-            }
-        }
-
-        public IRepository<Users> IUsersRepository
-        {
-            get
-            {
-                if (usersRepository == null)
-                    usersRepository = new UsersRepository(db);
-                return usersRepository;
-            }
-        }
-
-        public IReportsRepository IReportsRepository
-        {
-            get
-            {
-                if (reportsRepository == null)
-                    reportsRepository = new ReportsRepository(db);
-                return reportsRepository;
+                if (reportRepository == null)
+                    reportRepository = new ReportsRepository(db);
+                return reportRepository;
             }
         }
 

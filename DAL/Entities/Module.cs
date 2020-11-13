@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,12 +6,13 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Modules
+    [Table("Module")]
+    public partial class Module
     {
         [Key]
         public int Modules_ID { get; set; }
 
-        public int Plans_ID { get; set; }
+        public int Students_ID { get; set; }
 
         public int Number { get; set; }
 
@@ -23,8 +24,10 @@ namespace DAL
 
         public int Topics_ID { get; set; }
 
-        public virtual Plans Plans { get; set; }
+        public bool? Finished { get; set; }
 
-        public virtual Topics Topics { get; set; }
+        public virtual Student Student { get; set; }
+
+        public virtual Topic Topic { get; set; }
     }
 }

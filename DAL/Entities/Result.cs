@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,8 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Results
+    [Table("Result")]
+    public partial class Result
     {
         [Key]
         public int Results_ID { get; set; }
@@ -17,8 +18,11 @@ namespace DAL
 
         public bool? Solved { get; set; }
 
-        public virtual Students Students { get; set; }
+        [StringLength(10)]
+        public string Solution_Text { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Student Student { get; set; }
+
+        public virtual Task Task { get; set; }
     }
 }

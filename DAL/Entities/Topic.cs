@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,14 +6,14 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Topics
+    [Table("Topic")]
+    public partial class Topic
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Topics()
+        public Topic()
         {
-            Modules = new HashSet<Modules>();
-            Tasks = new HashSet<Tasks>();
-            Theory = new HashSet<Theory>();
+            Module = new HashSet<Module>();
+            Task = new HashSet<Task>();
         }
 
         [Key]
@@ -23,13 +23,13 @@ namespace DAL
         [StringLength(255)]
         public string Title { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Modules> Modules { get; set; }
+        [Column(TypeName = "text")]
+        public string Theory_Text { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Module> Module { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Theory> Theory { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
     }
 }

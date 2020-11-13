@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,8 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Users
+    [Table("User")]
+    public partial class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -39,10 +40,10 @@ namespace DAL
         [StringLength(50)]
         public string Phone { get; set; }
 
-        public virtual Students Students { get; set; }
+        public virtual Student Student { get; set; }
 
-        public virtual Teachers Teachers { get; set; }
+        public virtual Teacher Teacher { get; set; }
 
-        public virtual User_Types User_Types { get; set; }
+        public virtual User_Type User_Type { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,16 @@ namespace DAL.Interfaces
 {
     public interface IUnitOfWork
     {
-        IRepository<Messages> IMessagesRepository { get; }
-        IRepository<Modules> IModulesRepository { get; }
-        IRepository<Plans> IPlansRepository { get; }
-        IRepository<Results> IResultsRepository { get; }
-        IRepository<Solutions> ISolutionsRepository { get; }
-        IRepository<Students> IStudentsRepository { get; }
-        IRepository<Tasks> ITasksRepository { get; }
-        IRepository<Teachers> ITeachersRepository { get; }
-        IRepository<Theory> ITheoryRepository { get; }
-        IRepository<Topics> ITopicsRepository { get; }
-        IRepository<User_Types> IUser_TypesRepository { get; }
-        IRepository<Users> IUsersRepository { get; }
-        IReportsRepository IReportsRepository { get; }
+        IRepository<Message> Messages { get; }
+        IRepository<Module> Modules { get; }
+        IRepository<Result> Results { get; }
+        IRepository<Student> Students { get; }
+        IRepository<Entities.Task> Tasks { get; }
+        IRepository<Teacher> Teachers { get; }
+        IRepository<Topic> Topics { get; }
+        IRepository<User_Type> User_Types { get; }
+        IRepository<User> Users { get; }
+        IReportsRepository Reports { get; }
         int Save();
     }
 }

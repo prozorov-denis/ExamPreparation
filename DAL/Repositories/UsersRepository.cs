@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,38 +9,38 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UsersRepository : IRepository<Users>
+    public class UserRepository : IRepository<User>
     {
         ExamPreparationDb db;
 
-        public UsersRepository(ExamPreparationDb context)
+        public UserRepository(ExamPreparationDb context)
         {
             this.db = context;
         }
 
-        public void Create(Users item)
+        public void Create(User item)
         {
-            db.Users.Add(item);
+            db.User.Add(item);
         }
 
         public void Delete(int id)
         {
-            Users item = db.Users.Find(id);
+            User item = db.User.Find(id);
             if (item != null)
-                db.Users.Remove(item);
+                db.User.Remove(item);
         }
 
-        public Users GetItem(int id)
+        public User GetItem(int id)
         {
-            return db.Users.Find(id);
+            return db.User.Find(id);
         }
 
-        public List<Users> GetList()
+        public List<User> GetList()
         {
-            return db.Users.ToList();
+            return db.User.ToList();
         }
 
-        public void Update(Users item)
+        public void Update(User item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,12 +6,13 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Tasks
+    [Table("Task")]
+    public partial class Task
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tasks()
+        public Task()
         {
-            Results = new HashSet<Results>();
+            Result = new HashSet<Result>();
         }
 
         [Key]
@@ -29,10 +30,8 @@ namespace DAL
         public string Answer { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Results> Results { get; set; }
+        public virtual ICollection<Result> Result { get; set; }
 
-        public virtual Solutions Solutions { get; set; }
-
-        public virtual Topics Topics { get; set; }
+        public virtual Topic Topic { get; set; }
     }
 }

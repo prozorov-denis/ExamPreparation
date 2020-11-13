@@ -1,4 +1,5 @@
-﻿using DAL.Interfaces;
+﻿using DAL.Entities;
+using DAL.Interfaces;
 using DAL.ReportsData;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,11 @@ namespace DAL.Repositories
             this.db = context;
         }
 
-        public List<ModulesTopics> ReportModulesTopics(int modules_ID)
+        public List<ModulesTopics> ReportModulesTopics(int module_ID)
         {
-            var request = db.Modules
-                .Where(i => i.Modules_ID == modules_ID)
-                .Join(db.Topics, m => m.Topics_ID, t => t.Topics_ID, (m, t) => new ModulesTopics() { ModuleNumber = m.Number, TopicTitle = t.Title })
+            var request = db.Module
+                .Where(i => i.Modules_ID == module_ID)
+                .Join(db.Topic, m => m.Topics_ID, t => t.Topics_ID, (m, t) => new ModulesTopics() { ModuleNumber = m.Number, TopicTitle = t.Title })
                 .ToList();
 
             return request;

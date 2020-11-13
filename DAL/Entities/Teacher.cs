@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +6,14 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Teachers
+    [Table("Teacher")]
+    public partial class Teacher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Teachers()
+        public Teacher()
         {
-            Messages = new HashSet<Messages>();
-            Students = new HashSet<Students>();
+            Message = new HashSet<Message>();
+            Student = new HashSet<Student>();
         }
 
         [Key]
@@ -20,11 +21,11 @@ namespace DAL
         public int Teachers_ID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Messages> Messages { get; set; }
+        public virtual ICollection<Message> Message { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Students> Students { get; set; }
+        public virtual ICollection<Student> Student { get; set; }
 
-        public virtual Users Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

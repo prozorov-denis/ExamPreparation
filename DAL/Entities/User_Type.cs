@@ -1,4 +1,4 @@
-namespace DAL
+namespace DAL.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -6,22 +6,23 @@ namespace DAL
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class User_Types
+    public partial class User_Type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User_Types()
+        public User_Type()
         {
-            Users = new HashSet<Users>();
+            User = new HashSet<User>();
         }
 
         [Key]
         public int User_Types_ID { get; set; }
 
+        [Column("User_Type")]
         [Required]
         [StringLength(50)]
-        public string User_Type { get; set; }
+        public string User_Type1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

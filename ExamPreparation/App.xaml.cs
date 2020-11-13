@@ -1,7 +1,4 @@
-﻿using BLL.Util;
-using ExamPreparation.Util;
-using Ninject;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,6 +13,6 @@ namespace ExamPreparation
     /// </summary>
     public partial class App : Application
     {
-
+ 
     }
 }

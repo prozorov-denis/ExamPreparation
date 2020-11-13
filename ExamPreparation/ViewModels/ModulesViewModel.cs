@@ -16,6 +16,7 @@ namespace ExamPreparation.ViewModels
 
         public ModulesViewModel() : base()
         {
+            
             Modules = new ObservableCollection<ModuleModel>();
             for (int i = 0; i < 10; i++)
                 Modules.Add(new ModuleModel { Title = "Title " + i, Theme = "Theme " + i, IsTheoryAvailable = true, AreProblemsAvailable = true, IsTestAvailable = true });
