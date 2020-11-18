@@ -13,8 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="StudentView" Height="450" Width="800"
-        xmlns:uc="clr-namespace:ExamPreparation.UserControls">
+        Title="StudentView" Height="450" Width="800">
     <Grid>
         <TabControl DockPanel.Dock="Left" Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
 

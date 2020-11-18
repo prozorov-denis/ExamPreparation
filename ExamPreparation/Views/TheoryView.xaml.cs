@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExamPreparation.UserControls
+namespace ExamPreparation.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ModuleCard.xaml
+    /// Логика взаимодействия для TheoryView.xaml
     /// </summary>
-    public partial class ModuleCard : UserControl
+    public partial class TheoryView : UserControl
     {
-        public ModuleCard()
+        public TheoryView()
         {
             InitializeComponent();
         }
