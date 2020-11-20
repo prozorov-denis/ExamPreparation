@@ -13,7 +13,11 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="StudentView" Height="450" Width="800">
+        Title="StudentView" Height="450" Width="800"
+        xmlns:vm="clr-namespace:ExamPreparation.ViewModels">
+    <Window.DataContext>
+        <vm:StudentViewModel/>
+    </Window.DataContext>
     <Grid>
         <TabControl DockPanel.Dock="Left" Style="{StaticResource MaterialDesignNavigatilRailTabControl}">
 
@@ -35,22 +39,16 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
+            <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}" Content="{Binding CurrentStudyingVM}">
                 <TabItem.Header>
                     <materialDesign:PackIcon Kind="BookmarkCheckOutline" Width="32" Height="32" />
                 </TabItem.Header>
-                <TabItem.Content>
-                    <local:ModulesView/>
-                </TabItem.Content>
             </TabItem>
 
             <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">
                 <TabItem.Header>
                     <materialDesign:PackIcon Kind="MessageTextOutline" Width="32" Height="32" />
                 </TabItem.Header>
-                <TabItem.Content>
-                    <local:MassagesView/>
-                </TabItem.Content>
             </TabItem>
 
             <TabItem Style="{StaticResource MaterialDesignNavigationRailTabItem}">

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ExamPreparation.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ModulesView.xaml
+    /// Логика взаимодействия для ThemesView.xaml
     /// </summary>
-    public partial class ModulesView : UserControl
+    public partial class ThemesView : UserControl
     {
-        public ModulesView()
+        public ThemesView()
         {
             InitializeComponent();
         }

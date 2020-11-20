@@ -22,16 +22,24 @@
                 <views:MassagesView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:ModulesViewModel}">
-                <views:ModulesView/>
-            </DataTemplate>
-
             <DataTemplate DataType="{x:Type viewmodels:PlanViewModel}">
                 <views:PlanView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
                 <views:SettingsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:StudentViewModel}">
+                <views:StudentView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ThemesViewModel}">
+                <views:ThemesView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:TheoryViewModel}">
+                <views:TheoryView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

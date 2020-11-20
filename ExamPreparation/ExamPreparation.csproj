@@ -68,12 +68,13 @@
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Models\ModuleModel.cs" />
+    <Compile Include="Models\ThemeModel.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\MassagesViewModel.cs" />
-    <Compile Include="ViewModels\ModulesViewModel.cs" />
     <Compile Include="ViewModels\PlanViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
+    <Compile Include="ViewModels\ThemesViewModel.cs" />
     <Compile Include="ViewModels\TheoryViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AccountView.xaml.cs">
@@ -89,9 +90,6 @@
     <Compile Include="Views\MassagesView.xaml.cs">
       <DependentUpon>MassagesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ModulesView.xaml.cs">
-      <DependentUpon>ModulesView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PlanView.xaml.cs">
       <DependentUpon>PlanView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +98,9 @@
     </Compile>
     <Compile Include="Views\StudentView.xaml.cs">
       <DependentUpon>StudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThemesView.xaml.cs">
+      <DependentUpon>ThemesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TheoryView.xaml.cs">
       <DependentUpon>TheoryView.xaml</DependentUpon>
@@ -116,10 +117,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ModulesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\PlanView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StudentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThemesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
