@@ -1,9 +1,13 @@
-﻿using ExamPreparation.Commands;
+﻿using DAL.Entities;
+using DAL.Repositories;
+using ExamPreparation.Commands;
+using ExamPreparation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ExamPreparation.ViewModels
@@ -14,27 +18,32 @@ namespace ExamPreparation.ViewModels
 
         public string Theory { get; set; }
 
-        public event EventHandler ShowModules;
+        public int Theme_Id { get; set; }
 
-        public event EventHandler ShowTasks;
+        private Action<object> showThemes;
 
-        public TheoryViewModel() : base()
+        EFUnitOfWork unitOfWork;
+
+        public TheoryViewModel(int Theme_Id, Action<object> showThemes) : base()
         {
-            Title = "Количественная оценка информации";
+            unitOfWork = new EFUnitOfWork();
 
-            for (int i = 0; i < 1000; i++)
-                Theory += "Оценка ";
-            Theory += ".";
+            Topic topic = unitOfWork.Topics.GetItem(Theme_Id);
+
+            this.Theme_Id = Theme_Id;
+            Title = topic.Title;
+            Theory = topic.Theory_Text;
+ 
+            this.showThemes = showThemes;
         }
 
-        public ICommand ShowTheoryCommand
+        public ICommand ShowThemesCommand
         {
             get
             {
                 return new RelayCommand(obj =>
                 {
-                    if (ShowModules != null)
-                        ShowModules(this, new EventArgs());
+                    showThemes.Invoke(obj);
                 });
             }
         }
@@ -45,8 +54,8 @@ namespace ExamPreparation.ViewModels
             {
                 return new RelayCommand(obj =>
                 {
-                    if (ShowTasks != null)
-                        ShowTasks(this, new EventArgs());
+                    obj = Theme_Id;
+                    MessageBox.Show("Задания " + obj.ToString());
                 });
             }
         }

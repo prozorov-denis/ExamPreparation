@@ -17,11 +17,12 @@ namespace DAL.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Topics_ID { get; set; }
 
         [StringLength(255)]
         public string Title { get; set; }
+
+        public byte[] Theory { get; set; }
 
         [Column(TypeName = "text")]
         public string Theory_Text { get; set; }

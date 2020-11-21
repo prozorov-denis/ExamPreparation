@@ -16,7 +16,6 @@ namespace DAL.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Tasks_ID { get; set; }
 
         public int Topics_ID { get; set; }
@@ -28,6 +27,9 @@ namespace DAL.Entities
         [Required]
         [StringLength(50)]
         public string Answer { get; set; }
+
+        [Column(TypeName = "xml")]
+        public string Task_Xml { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Result> Result { get; set; }

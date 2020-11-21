@@ -1,4 +1,6 @@
-﻿using ExamPreparation.Commands;
+﻿using DAL.Entities;
+using DAL.Repositories;
+using ExamPreparation.Commands;
 using ExamPreparation.Models;
 using System;
 using System.Collections.Generic;
@@ -13,16 +15,27 @@ namespace ExamPreparation.ViewModels
 {
     public class ThemesViewModel
     {
-        public ObservableCollection<ThemeModel> Themes { get; set; }
+        public List<ThemeModel> Themes { get; set; }
 
         private Action<object> showTheory;
 
+        EFUnitOfWork unitOfWork;
+
         public ThemesViewModel(Action<object> showTheory) : base()
         {
+            unitOfWork = new EFUnitOfWork();
 
-            Themes = new ObservableCollection<ThemeModel>();
-            for (int i = 0; i < 10; i++)
-                Themes.Add(new ThemeModel { Theme_Id = i, Title = "Title " + i, Theme = "Theme " + i, IsTheoryAvailable = true, AreProblemsAvailable = true, IsTestAvailable = true });
+            var topics = unitOfWork.Topics.GetList();
+
+            Themes = topics.Select(i => new ThemeModel { Theme_Id = i.Topics_ID, Theme = i.Title }).ToList();
+            foreach (ThemeModel t in Themes)
+            {
+                t.Title = "Задание " + t.Theme_Id;
+                t.IsTheoryAvailable = true;
+                t.AreProblemsAvailable = true;
+                t.IsTestAvailable = true;
+            }
+            
             this.showTheory = showTheory;
         }
 

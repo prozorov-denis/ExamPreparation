@@ -26,9 +26,14 @@ namespace ExamPreparation.ViewModels
             CurrentStudyingVM = new ThemesViewModel(ShowTheory);
         }
 
+        private void ShowThemes(object obj)
+        {
+            CurrentStudyingVM = new ThemesViewModel(ShowTheory);
+        }
+
         private void ShowTheory(object obj)
         {
-            CurrentStudyingVM = new TheoryViewModel();
+            CurrentStudyingVM = new TheoryViewModel(Convert.ToInt32(obj), ShowThemes);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
