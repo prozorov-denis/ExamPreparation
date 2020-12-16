@@ -12,16 +12,23 @@ namespace DAL.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Topic()
         {
+            Module = new HashSet<Module>();
             Task = new HashSet<Task>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TopicId { get; set; }
+        [Key]
+        public int Topics_ID { get; set; }
 
         [StringLength(255)]
         public string Title { get; set; }
 
         public byte[] Theory { get; set; }
+
+        [Column(TypeName = "text")]
+        public string Theory_Text { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Module> Module { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }

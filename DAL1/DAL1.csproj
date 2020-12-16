@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{436BAF65-367F-4F27-8A96-C2C95CCBFB1C}</ProjectGuid>
+    <ProjectGuid>{513E6EBC-FBE5-4AA9-8208-60A4B0D65CC0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL</RootNamespace>
@@ -53,15 +53,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\ExamDbContext.cs" />
+    <Compile Include="Entities\ExamPreparationDb.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\Module.cs" />
+    <Compile Include="Entities\Result.cs" />
+    <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Task.cs" />
+    <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Entities\Topic.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\User_Type.cs" />
+    <Compile Include="Interfaces\IReportsRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\TaskRepository.cs" />
-    <Compile Include="Repositories\TopicRepository.cs" />
-    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="ReportsData\ModulesTopics.cs" />
+    <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\MessagesRepository.cs" />
+    <Compile Include="Repositories\ModulesRepository.cs" />
+    <Compile Include="Repositories\ReportsRepository.cs" />
+    <Compile Include="Repositories\ResultsRepository.cs" />
+    <Compile Include="Repositories\StudentsRepository.cs" />
+    <Compile Include="Repositories\TasksRepository.cs" />
+    <Compile Include="Repositories\TeachersRepository.cs" />
+    <Compile Include="Repositories\TopicsRepository.cs" />
+    <Compile Include="Repositories\UsersRepository.cs" />
+    <Compile Include="Repositories\User_TypesRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

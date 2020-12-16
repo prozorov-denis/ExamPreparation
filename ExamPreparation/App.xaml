@@ -34,6 +34,10 @@
                 <views:StudentView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:TasksViewModel}">
+                <views:TasksView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewmodels:ThemesViewModel}">
                 <views:ThemesView/>
             </DataTemplate>

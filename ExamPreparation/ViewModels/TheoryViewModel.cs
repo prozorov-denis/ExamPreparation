@@ -20,21 +20,23 @@ namespace ExamPreparation.ViewModels
 
         public int Theme_Id { get; set; }
 
-        private Action<object> showThemes;
+        private Action showThemes;
+        Action<object> showTasks;
 
-        EFUnitOfWork unitOfWork;
+        //EFUnitOfWork unitOfWork;
 
-        public TheoryViewModel(int Theme_Id, Action<object> showThemes) : base()
+        public TheoryViewModel(int Theme_Id, Action showThemes, Action<object> showTasks) : base()
         {
-            unitOfWork = new EFUnitOfWork();
+            //unitOfWork = new EFUnitOfWork();
 
-            Topic topic = unitOfWork.Topics.GetItem(Theme_Id);
+            //Topic topic = unitOfWork.Topics.GetItem(Theme_Id);
 
-            this.Theme_Id = Theme_Id;
-            Title = topic.Title;
-            Theory = topic.Theory_Text;
+            //this.Theme_Id = Theme_Id;
+            //Title = topic.Title;
+            //Theory = topic.Theory_Text;
  
             this.showThemes = showThemes;
+            this.showTasks = showTasks;
         }
 
         public ICommand ShowThemesCommand
@@ -43,7 +45,7 @@ namespace ExamPreparation.ViewModels
             {
                 return new RelayCommand(obj =>
                 {
-                    showThemes.Invoke(obj);
+                    showThemes.Invoke();
                 });
             }
         }
@@ -54,8 +56,7 @@ namespace ExamPreparation.ViewModels
             {
                 return new RelayCommand(obj =>
                 {
-                    obj = Theme_Id;
-                    MessageBox.Show("Задания " + obj.ToString());
+                    showTasks.Invoke(obj);
                 });
             }
         }

@@ -1,6 +1,4 @@
-﻿using DAL.Entities;
-using DAL.Repositories;
-using ExamPreparation.Commands;
+﻿using ExamPreparation.Commands;
 using ExamPreparation.Models;
 using System;
 using System.Collections.Generic;
@@ -18,25 +16,27 @@ namespace ExamPreparation.ViewModels
         public List<ThemeModel> Themes { get; set; }
 
         private Action<object> showTheory;
+        private Action<object> showTasks;
 
-        EFUnitOfWork unitOfWork;
+        //EFUnitOfWork unitOfWork;
 
-        public ThemesViewModel(Action<object> showTheory) : base()
+        public ThemesViewModel(Action<object> showTheory, Action<object> showTasks) : base()
         {
-            unitOfWork = new EFUnitOfWork();
+            //unitOfWork = new EFUnitOfWork();
 
-            var topics = unitOfWork.Topics.GetList();
+            //var topics = unitOfWork.Topics.GetList();
 
-            Themes = topics.Select(i => new ThemeModel { Theme_Id = i.Topics_ID, Theme = i.Title }).ToList();
-            foreach (ThemeModel t in Themes)
-            {
-                t.Title = "Задание " + t.Theme_Id;
-                t.IsTheoryAvailable = true;
-                t.AreProblemsAvailable = true;
-                t.IsTestAvailable = true;
-            }
+            //Themes = topics.Select(i => new ThemeModel { Theme_Id = i.Topics_ID, Theme = i.Title }).ToList();
+            //foreach (ThemeModel t in Themes)
+            //{
+            //    t.Title = "Задание " + t.Theme_Id;
+            //    t.IsTheoryAvailable = true;
+            //    t.AreProblemsAvailable = true;
+            //    t.IsTestAvailable = true;
+            //}
             
             this.showTheory = showTheory;
+            this.showTasks = showTasks;
         }
 
         public ICommand ShowTheoryCommand
@@ -56,7 +56,7 @@ namespace ExamPreparation.ViewModels
             {
                 return new RelayCommand(obj =>
                 {
-                    MessageBox.Show("Задания " + obj.ToString());
+                    showTasks.Invoke(obj);
                 });
             }
         }

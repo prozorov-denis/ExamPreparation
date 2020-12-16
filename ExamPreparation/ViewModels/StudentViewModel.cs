@@ -23,17 +23,24 @@ namespace ExamPreparation.ViewModels
 
         public StudentViewModel()
         {
-            CurrentStudyingVM = new ThemesViewModel(ShowTheory);
+            CurrentStudyingVM = new TasksViewModel(1, ShowThemes, ShowTheory);
+            //CurrentStudyingVM = new ThemesViewModel(ShowTheory, ShowTasks);
         }
 
-        private void ShowThemes(object obj)
+        private void ShowThemes()
         {
-            CurrentStudyingVM = new ThemesViewModel(ShowTheory);
+            CurrentStudyingVM = new ThemesViewModel(ShowTheory, ShowTasks);
         }
 
         private void ShowTheory(object obj)
         {
-            CurrentStudyingVM = new TheoryViewModel(Convert.ToInt32(obj), ShowThemes);
+            CurrentStudyingVM = new TheoryViewModel(Convert.ToInt32(obj), ShowThemes, ShowTasks);
+        }
+
+
+        private void ShowTasks(object obj)
+        {
+            CurrentStudyingVM = new TasksViewModel(Convert.ToInt32(obj), ShowThemes, ShowTheory);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
