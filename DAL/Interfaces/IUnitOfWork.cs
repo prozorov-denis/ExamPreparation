@@ -10,6 +10,7 @@ namespace DAL.Interfaces
     {
         IRepository<Task> Tasks { get; }
         IRepository<Topic> Topics { get; }
+        IRepository<User> Users { get; }
         int Save();
     }
 }

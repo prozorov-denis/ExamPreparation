@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExamPreparation.Views
+namespace ExamPreparation.Views.StudentViews
 {
     /// <summary>
-    /// Логика взаимодействия для ThemesView.xaml
+    /// Логика взаимодействия для TheoryView.xaml
     /// </summary>
-    public partial class ThemesView : UserControl
+    public partial class TheoryView : UserControl
     {
-        public ThemesView()
+        public TheoryView()
         {
             InitializeComponent();
         }

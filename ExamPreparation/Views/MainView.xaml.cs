@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ExamPreparation.Views
 {
     /// <summary>
-    /// Логика взаимодействия для SettingsView.xaml
+    /// Логика взаимодействия для MainView.xaml
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class MainView : Window
     {
-        public SettingsView()
+        public MainView()
         {
             InitializeComponent();
         }

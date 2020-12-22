@@ -6,28 +6,22 @@ namespace DAL.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Topic")]
-    public partial class Topic
+    [Table("UserType")]
+    public partial class UserType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Topic()
+        public UserType()
         {
-            Studying = new HashSet<Studying>();
-            Task = new HashSet<Task>();
+            User = new HashSet<User>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TopicId { get; set; }
+        public int UserTypeId { get; set; }
 
-        [StringLength(255)]
-        public string Title { get; set; }
-
-        public byte[] Theory { get; set; }
+        [StringLength(20)]
+        public string Type { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Studying> Studying { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Task { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

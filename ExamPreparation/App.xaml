@@ -2,9 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ExamPreparation"
-             StartupUri="Views/StudentView.xaml"
+             StartupUri="Views/MainView.xaml"
              xmlns:viewmodels="clr-namespace:ExamPreparation.ViewModels"
-             xmlns:views="clr-namespace:ExamPreparation.Views">
+             xmlns:studentViewModels="clr-namespace:ExamPreparation.ViewModels.StudentViewModels"
+             xmlns:views="clr-namespace:ExamPreparation.Views"
+             xmlns:studentViews="clr-namespace:ExamPreparation.Views.StudentViews">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,36 +16,28 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate DataType="{x:Type viewmodels:AccountViewModel}">
-                <views:AccountView/>
+            <DataTemplate DataType="{x:Type viewmodels:MainViewModel}">
+                <views:MainView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:MassagesViewModel}">
-                <views:MassagesView/>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:PlanViewModel}">
-                <views:PlanView/>
+            <DataTemplate DataType="{x:Type studentViewModels:StudentViewModel}">
+                <studentViews:StudentView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
-                <views:SettingsView/>
+            <DataTemplate DataType="{x:Type studentViewModels:TopicsViewModel}">
+                <studentViews:TopicsView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:StudentViewModel}">
-                <views:StudentView/>
+            <DataTemplate DataType="{x:Type studentViewModels:TheoryViewModel}">
+                <studentViews:TheoryView/>
             </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewmodels:TasksViewModel}">
-                <views:TasksView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewmodels:ThemesViewModel}">
-                <views:ThemesView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewmodels:TheoryViewModel}">
-                <views:TheoryView/>
+            
+            <DataTemplate DataType="{x:Type studentViewModels:TasksViewModel}">
+                <studentViews:TasksView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

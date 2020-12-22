@@ -2,6 +2,7 @@
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -12,23 +13,50 @@ namespace OperatingDb
         static void Main(string[] args)
         {
             UnitOfWork uof = new UnitOfWork();
-
-            Task task = new Task();
-            task.TaskId = 1;
-            task.TopicId = 1;
-            string pdfFilePath = @"C:\Users\mrpro\Desktop\CourseWork\Tasks\1\" + 1 + ".xps";
-            task.Text = System.IO.File.ReadAllBytes(pdfFilePath);
-            task.Answer = "answer1";
-            uof.Tasks.Create(task);
-            uof.Save();
-            //for (int i = 1; i <= 5; ++i)
+            
+            //int k = 1;
+            //for (int i = 1; i <= 10; ++i)
             //{
-            //    Task task = new Task();
-            //    task.TaskId = i;
-            //    task.TopicId = 1;
-            //    string pdfFilePath = @"C:\Users\mrpro\Desktop\CourseWork\Tasks\1\" + i + ".pdf";
-            //    task.Text = System.IO.File.ReadAllBytes(pdfFilePath);
+            //    for (int j = 1; j <= 5; j++)
+            //    {
+            //        Task task = new Task();
+            //        task.TaskId = k;
+            //        task.TopicId = i;
+            //        string files = @"C:\Users\mrpro\Desktop\CourseWork\Tasks\" + i + "\\";
+            //        string taskText = j + ".txt";
+            //        string taskImage = j + ".png";
+            //        string solutionText = j + "S.txt";
+            //        string solutionImage = j + "S.png";
+
+            //        using (StreamReader sr = new StreamReader(files + taskText))
+            //        {
+            //            task.TaskText = sr.ReadToEnd();
+            //        }
+
+            //        if (File.Exists(files + taskImage))
+            //            task.TaskImage = File.ReadAllBytes(files + taskImage);
+
+            //        using (StreamReader sr = new StreamReader(files + solutionText))
+            //        {
+            //            task.SolutionText = sr.ReadToEnd();
+            //        }
+
+            //        if (File.Exists(files + solutionImage))
+            //            task.SolutionImage = File.ReadAllBytes(files + solutionImage);
+
+            //        uof.Tasks.Create(task);
+            //        k++;
+            //    }  
             //}
+
+            for (int i = 1; i <= 10; ++i)
+            {
+                Topic topic = uof.Topics.GetItem(i);
+                string pdfFilePath = @"C:\Users\mrpro\Desktop\CourseWork\Theory\" + i + ".xps";
+                topic.Theory = System.IO.File.ReadAllBytes(pdfFilePath);
+                uof.Topics.Update(topic);
+            }
+            uof.Save();
         }
     }
 }

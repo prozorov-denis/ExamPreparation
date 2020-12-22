@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="ExamPreparation.Views.StudentViews.TheoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ExamPreparation.Views.StudentViews"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <materialDesign:ColorZone Grid.Row="0" Padding="10">
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}" Command="{Binding ShowTopicsCommand}">
+                    <materialDesign:PackIcon Kind="ArrowBack" Width="auto" Height="auto" />
+                </Button>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="Теория" Style="{StaticResource MaterialDesignHeadline3TextBlock}" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                <Button Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionButton}" Command="{Binding ShowTasksCommand}" CommandParameter="{Binding Path=TopicId}">
+                    <materialDesign:PackIcon Kind="ArrowRight" Width="auto" Height="auto" />
+                </Button>
+            </Grid>
+        </materialDesign:ColorZone>
+        <DocumentViewer Grid.Row="1" Document="{Binding Theory}"/>
+    </Grid>
+</UserControl>

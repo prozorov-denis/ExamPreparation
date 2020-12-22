@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExamPreparation.Views
+namespace ExamPreparation.Views.StudentViews
 {
     /// <summary>
-    /// Логика взаимодействия для MassagesView.xaml
+    /// Логика взаимодействия для StudentView.xaml
     /// </summary>
-    public partial class MassagesView : UserControl
+    public partial class StudentView : UserControl
     {
-        public MassagesView()
+        public StudentView()
         {
             InitializeComponent();
         }

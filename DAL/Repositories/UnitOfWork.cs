@@ -12,6 +12,7 @@ namespace DAL.Repositories
         ExamDbContext db;
         TaskRepository taskRepository;
         TopicRepository topicRepository;
+        UserRepository userRepository;
 
         public UnitOfWork()
         {
@@ -35,6 +36,16 @@ namespace DAL.Repositories
                 if (topicRepository == null)
                     topicRepository = new TopicRepository(db);
                 return topicRepository;
+            }
+        }
+
+        public IRepository<User> Users
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(db);
+                return userRepository;
             }
         }
 
