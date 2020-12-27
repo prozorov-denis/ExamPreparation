@@ -12,20 +12,25 @@ namespace DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }
 
-        public int? UserTypeId { get; set; }
+        public int UserTypeId { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Login { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Password { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Surname { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Patronymic { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using ExamPreparation.Commands;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace ExamPreparation.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private UnitOfWork unitOfWork;
+        private ExamDbContext db;
 
         public User CurrentUser { get; set; }
 
@@ -29,21 +28,19 @@ namespace ExamPreparation.ViewModels
             set
             {
                 success = value;
-                MessageBox.Show(success.ToString());
                 OnPropertyChanged();
             }
         }
 
         public LoginViewModel()
         {
-            unitOfWork = new UnitOfWork();
             Success = false;
             CurrentUser = null;
         }
 
-        public LoginViewModel(UnitOfWork unitOfWork)
+        public LoginViewModel(ExamDbContext db)
         {
-            this.unitOfWork = unitOfWork;
+            this.db = db;
             Success = false;
             CurrentUser = null;
         }
@@ -56,7 +53,7 @@ namespace ExamPreparation.ViewModels
                 {
                     if (UserLogin != null && UserPassword != null)
                     {
-                        List<User> users = unitOfWork.Users.GetList();
+                        List<User> users = db.User.ToList();
 
                         User user = users.Where(u => u.Login == UserLogin).FirstOrDefault();
 
@@ -66,7 +63,6 @@ namespace ExamPreparation.ViewModels
                                 Success = true;
                             if (Success)
                             {
-                                MessageBox.Show("Вход выполнен.");
                                 CurrentUser = user;
                                 OnUserLogged();
                             }

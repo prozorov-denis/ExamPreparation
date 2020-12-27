@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using ExamPreparation.Commands;
 using ExamPreparation.Models;
 using System;
@@ -13,7 +12,7 @@ namespace ExamPreparation.ViewModels.StudentViewModels
 {
     public class TopicsViewModel : ViewModelBase
     {
-        private UnitOfWork unitOfWork;
+        private ExamDbContext db;
 
         public List<Topic> Topics { get; set; }
 
@@ -21,13 +20,20 @@ namespace ExamPreparation.ViewModels.StudentViewModels
         private Action<object> showTasks;
 
 
-        public TopicsViewModel(UnitOfWork unitOfWork, Action<object> showTheory, Action<object> showTasks) : base()
+        public TopicsViewModel(ExamDbContext db, Action<object> showTheory, Action<object> showTasks) : base()
         {
-            this.unitOfWork = unitOfWork;
+            this.db = db;
             this.showTheory = showTheory;
             this.showTasks = showTasks;
 
-            Topics = unitOfWork.Topics.GetList();
+            try
+            {
+                Topics = db.Topic.ToList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("При загрузке данных проихошла ошибка. " + ex.Message);
+            }
         }
 
         public ICommand ShowTheoryCommand

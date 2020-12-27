@@ -5,8 +5,10 @@
              StartupUri="Views/MainView.xaml"
              xmlns:viewmodels="clr-namespace:ExamPreparation.ViewModels"
              xmlns:studentViewModels="clr-namespace:ExamPreparation.ViewModels.StudentViewModels"
+             xmlns:teacherViewModels="clr-namespace:ExamPreparation.ViewModels.TeacherViewModels"
              xmlns:views="clr-namespace:ExamPreparation.Views"
-             xmlns:studentViews="clr-namespace:ExamPreparation.Views.StudentViews">
+             xmlns:studentViews="clr-namespace:ExamPreparation.Views.StudentViews"
+             xmlns:teacherViews="clr-namespace:ExamPreparation.Views.TeacherViews">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -38,6 +40,26 @@
             
             <DataTemplate DataType="{x:Type studentViewModels:TasksViewModel}">
                 <studentViews:TasksView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ChatViewModel}">
+                <views:ChatView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type teacherViewModels:TeacherViewModel}">
+                <teacherViews:TeacherView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type teacherViewModels:ShowStudentsViewModel}">
+                <teacherViews:ShowStudentsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:StatisticsViewModel}">
+                <views:StatisticsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type studentViewModels:PlanViewModel}">
+                <studentViews:PlanView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

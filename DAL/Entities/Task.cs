@@ -21,10 +21,12 @@ namespace DAL.Entities
         public int TopicId { get; set; }
 
         [Column(TypeName = "text")]
+        [Required]
         public string TaskText { get; set; }
 
         public byte[] TaskImage { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Answer { get; set; }
 

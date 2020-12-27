@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using ExamPreparation.Commands;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Xps.Packaging;
@@ -15,7 +15,7 @@ namespace ExamPreparation.ViewModels.StudentViewModels
 {
     public class TheoryViewModel : ViewModelBase
     {
-        private UnitOfWork unitOfWork;
+        private ExamDbContext db;
 
         public int TopicId { get; set; }
 
@@ -43,19 +43,27 @@ namespace ExamPreparation.ViewModels.StudentViewModels
         private Action showTopics;
         private Action<object> showTasks;
 
-        public TheoryViewModel(UnitOfWork unitOfWork, int TopicId, Action showTopics, Action<object> showTasks) : base()
+        public TheoryViewModel(ExamDbContext db, int TopicId, Action showTopics, Action<object> showTasks) : base()
         {
-            this.unitOfWork = unitOfWork;
+            this.db = db;
 
-            Topic topic = this.unitOfWork.Topics.GetItem(TopicId);
+            Topic topic = this.db.Topic.Find(TopicId);
 
             this.TopicId = TopicId;
             Title = topic.Title;
 
-            theoryFilePath = Path.GetTempPath() + "tempFile.xps";
-            File.WriteAllBytes(theoryFilePath, topic.Theory);
-            TheoryFile = new XpsDocument(theoryFilePath, FileAccess.Read);
-            Theory = TheoryFile.GetFixedDocumentSequence();
+            try
+            {
+                theoryFilePath = Path.GetTempPath() + "tempFile.xps";
+                File.WriteAllBytes(theoryFilePath, topic.Theory);
+                TheoryFile = new XpsDocument(theoryFilePath, FileAccess.Read);
+                Theory = TheoryFile.GetFixedDocumentSequence();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Не удалосб загрузить файл с теорией. " + ex.Message);
+            }
+            
 
             this.showTopics = showTopics;
             this.showTasks = showTasks;

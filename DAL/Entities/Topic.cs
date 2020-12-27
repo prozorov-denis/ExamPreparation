@@ -19,6 +19,7 @@ namespace DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TopicId { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Title { get; set; }
 

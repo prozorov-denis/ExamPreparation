@@ -28,6 +28,21 @@ namespace DAL.Entities
                 .Property(e => e.Text)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Student>()
+                .HasMany(e => e.Message)
+                .WithRequired(e => e.Student)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Student>()
+                .HasMany(e => e.Studying)
+                .WithRequired(e => e.Student)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Student>()
+                .HasMany(e => e.TaskResult)
+                .WithRequired(e => e.Student)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Task>()
                 .Property(e => e.TaskText)
                 .IsUnicode(false);
@@ -40,9 +55,29 @@ namespace DAL.Entities
                 .Property(e => e.SolutionText)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Task>()
+                .HasMany(e => e.TaskResult)
+                .WithRequired(e => e.Task)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(e => e.Message)
+                .WithRequired(e => e.Teacher)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(e => e.Student)
+                .WithRequired(e => e.Teacher)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Topic>()
                 .Property(e => e.Title)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Topic>()
+                .HasMany(e => e.Studying)
+                .WithRequired(e => e.Topic)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Topic>()
                 .HasMany(e => e.Task)
@@ -80,6 +115,16 @@ namespace DAL.Entities
             modelBuilder.Entity<UserType>()
                 .Property(e => e.Type)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<UserType>()
+                .HasMany(e => e.Message)
+                .WithRequired(e => e.UserType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserType>()
+                .HasMany(e => e.User)
+                .WithRequired(e => e.UserType)
+                .WillCascadeOnDelete(false);
         }
     }
 }

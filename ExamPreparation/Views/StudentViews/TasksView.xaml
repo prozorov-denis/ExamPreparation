@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <materialDesign:ColorZone Grid.Row="0" Padding="10">
@@ -44,14 +45,21 @@
                                 <StackPanel>
                                     <TextBlock Text="{Binding Title}" Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap"/>
                                     <TextBlock Text="{Binding TaskText}" Style="{StaticResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap"/>
-                                    <Image Visibility="{Binding HasTaskImage}" Source="{Binding TaskImage}" MaxHeight="200" Width="auto"/>
+                                    <Image Source="{Binding TaskImage}" MaxHeight="200" Width="auto"/>
+                                    <TextBlock Visibility="{Binding IsDone, Converter={StaticResource BooleanToVisibilityConverter}}" Text="{Binding Result}" Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap"/>
+                                    <Button Visibility="{Binding IsDone, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{DynamicResource MaterialDesignFlatButton}" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.ChangeSolutionVisabilityCommand}" CommandParameter="{Binding Path=TaskId}" Content="{Binding SolutionCommand}"/>
+                                    <StackPanel Visibility="{Binding SolutionVisability, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <TextBlock Text="Решение" Style="{StaticResource MaterialDesignBody1TextBlock}" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding SolutionText}" Style="{StaticResource MaterialDesignBody2TextBlock}" TextWrapping="Wrap"/>
+                                        <Image Source="{Binding SolutionImage}" MaxHeight="200" Width="auto"/>
+                                    </StackPanel>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition/>
                                             <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox Grid.Column="0" materialDesign:HintAssist.Hint="Введите ответ:" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                                        <Button Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Bottom">
+                                        <TextBox Grid.Column="0" materialDesign:HintAssist.Hint="Введите ответ:" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Path=StudentAnswer, Mode=OneWayToSource}"/>
+                                        <Button Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Bottom" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Path=DataContext.CheckAnswerCommand}"  CommandParameter="{Binding Path=TaskId}">
                                             Ответить
                                         </Button>
                                     </Grid>
@@ -62,5 +70,6 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
+        <Button Grid.Row="2" Command="{Binding ShowAllTasksCommand}">Показать все задания</Button>
     </Grid>
 </UserControl>

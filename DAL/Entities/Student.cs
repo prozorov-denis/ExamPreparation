@@ -20,7 +20,13 @@ namespace DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StudentId { get; set; }
 
-        public int? TeacherId { get; set; }
+        public int TeacherId { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? ExamDate { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? StartDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Message { get; set; }

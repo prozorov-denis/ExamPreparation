@@ -1,7 +1,7 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using ExamPreparation.Commands;
 using ExamPreparation.ViewModels.StudentViewModels;
+using ExamPreparation.ViewModels.TeacherViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace ExamPreparation.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private UnitOfWork unitOfWork;
+        private ExamDbContext db;
 
         private User CurrentUser { get; set; }
 
@@ -30,8 +30,8 @@ namespace ExamPreparation.ViewModels
 
         public MainViewModel()
         {
-            unitOfWork = new UnitOfWork();
-            setLoginViewModel(new LoginViewModel(unitOfWork));
+            db = new ExamDbContext();
+            setLoginViewModel(new LoginViewModel(db));
         }
 
         private void setLoginViewModel(LoginViewModel loginViewModel)
@@ -45,7 +45,10 @@ namespace ExamPreparation.ViewModels
             if (sender is LoginViewModel)
                 CurrentUser = (sender as LoginViewModel).CurrentUser;
 
-            CurrentViewModel = new StudentViewModel(CurrentUser.Student, unitOfWork);
+            if (CurrentUser.UserType.Type == "Student")
+                CurrentViewModel = new StudentViewModel(CurrentUser.Student, db);
+            else
+                CurrentViewModel = new TeacherViewModel(CurrentUser.Teacher, db);
         }
     }
 }

@@ -12,15 +12,12 @@ namespace DAL.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StudyingId { get; set; }
 
-        public int? StudentId { get; set; }
+        public int StudentId { get; set; }
 
-        public int? TopicId { get; set; }
+        public int TopicId { get; set; }
 
-        public bool? IsTheoryStudied { get; set; }
-
-        public bool? AreTasksDone { get; set; }
-
-        public bool? IsTestPassed { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? ComplationDate { get; set; }
 
         public virtual Student Student { get; set; }
 

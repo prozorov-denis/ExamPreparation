@@ -1,5 +1,4 @@
 ﻿using DAL.Entities;
-using DAL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace ExamPreparation.ViewModels.StudentViewModels
 {
     public class StudentViewModel : ViewModelBase
     {
-        private UnitOfWork unitOfWork;
+        private ExamDbContext db;
 
         public Student CurrentStudent { get; set; }
 
@@ -25,27 +24,54 @@ namespace ExamPreparation.ViewModels.StudentViewModels
             }
         }
 
-        public StudentViewModel(Student student, UnitOfWork unitOfWork)
+        private ViewModelBase currentChatViewModel;
+        public ViewModelBase CurrentChatViewModel
         {
-            this.unitOfWork = unitOfWork;
+            get { return currentChatViewModel; }
+            set
+            {
+                currentChatViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ViewModelBase currentPlanViewModel;
+        public ViewModelBase CurrentPlanViewModel
+        {
+            get { return currentPlanViewModel; }
+            set
+            {
+                currentPlanViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public StatisticsViewModel CurrentStatisticsVM { get; set; }
+
+        public StudentViewModel(Student student, ExamDbContext db)
+        {
+            this.db = db;
             CurrentStudent = student;
-            CurrentStudyingVM = new TopicsViewModel(unitOfWork, ShowTheory, ShowTasks);
+            CurrentStudyingVM = new TopicsViewModel(db, ShowTheory, ShowTasks);
+            CurrentChatViewModel = new ChatViewModel(db, CurrentStudent.User, CurrentStudent.Teacher.User);
+            CurrentStatisticsVM = new StatisticsViewModel(CurrentStudent, db);
+            CurrentPlanViewModel = new PlanViewModel(CurrentStudent, db);
         }
 
         private void ShowThemes()
         {
-            CurrentStudyingVM = new TopicsViewModel(unitOfWork, ShowTheory, ShowTasks);
+            CurrentStudyingVM = new TopicsViewModel(db, ShowTheory, ShowTasks);
         }
 
         private void ShowTheory(object obj)
         {
-            CurrentStudyingVM = new TheoryViewModel(unitOfWork, Convert.ToInt32(obj), ShowThemes, ShowTasks);
+            CurrentStudyingVM = new TheoryViewModel(db, Convert.ToInt32(obj), ShowThemes, ShowTasks);
         }
 
 
         private void ShowTasks(object obj)
         {
-            CurrentStudyingVM = new TasksViewModel(unitOfWork, Convert.ToInt32(obj), ShowThemes, ShowTheory);
+            CurrentStudyingVM = new TasksViewModel(db, Convert.ToInt32(obj), CurrentStudent.StudentId, ShowThemes, ShowTheory);
         }
     }
 }
