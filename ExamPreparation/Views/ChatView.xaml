@@ -50,7 +50,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" VerticalAlignment="Top" MaxHeight="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="This is a text area" Text="{Binding CurrentText, Mode=TwoWay}"/>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" VerticalAlignment="Top" MaxHeight="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Введите сообщение" Text="{Binding CurrentText, Mode=TwoWay}"/>
 
             <Button Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource MaterialDesignIconButton}" ToolTip="MaterialDesignIconButton" Command="{Binding SendMessageCommand}">
                 <materialDesign:PackIcon Kind="Send"/>

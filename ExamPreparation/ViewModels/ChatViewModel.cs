@@ -145,7 +145,7 @@ namespace ExamPreparation.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При загрезке сообщений произошла ошибка! " + ex.Message);
+                MessageBox.Show("При загрузке сообщений произошла ошибка! " + ex.Message);
             }
         }
 
@@ -176,10 +176,7 @@ namespace ExamPreparation.ViewModels
                             m.UserTypeId = CurrentUser.UserTypeId;
 
                             List<Message> messages;
-                            if (CurrentUser.UserType.Type == "Student")
-                                messages = db.Message.Where(mes => mes.StudentId == this.CurrentUser.Student.StudentId && mes.TeacherId == this.Companion.Teacher.TeacherId).ToList();
-                            else
-                                messages = db.Message.Where(mes => mes.TeacherId == this.CurrentUser.Teacher.TeacherId && mes.StudentId == this.Companion.Student.StudentId).ToList();
+                            messages = db.Message.ToList();
 
                             if (messages.Count > 0)
                                 m.MessageId = messages.Last().MessageId + 1;

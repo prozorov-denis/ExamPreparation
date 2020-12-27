@@ -24,7 +24,7 @@ namespace ExamPreparation.ViewModels.StudentViewModels
                 startDate = value;
                 if (examDate < startDate)
                 {
-                    examDate = startDate.AddDays(1);
+                    ExamDate = startDate.AddDays(1);
                 }
                 checkCanFormPlan();
                 OnPropertyChanged();
