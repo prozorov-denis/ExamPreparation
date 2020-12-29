@@ -17,11 +17,32 @@ namespace ExamPreparation.ViewModels.TeacherViewModels
 
         public Teacher CurrentTeacher { get; set; }
 
-        public List<StudentModel> Students { get; set; }
+        List<StudentModel> allStudents;
+        List<StudentModel> students;
+        public List<StudentModel> Students
+        {
+            get { return students; }
+            set
+            {
+                students = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Action<object> currentAction;
 
         public string CurrentActionTitle { get; set; }
+
+        string searchString;
+        public string SearchString
+        {
+            get { return searchString; }
+            set
+            {
+                searchString = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ShowStudentsViewModel(Teacher teacher, ExamDbContext db, Action<object> CurrentAction, string CurrentActionTitle)
         {
@@ -30,7 +51,10 @@ namespace ExamPreparation.ViewModels.TeacherViewModels
             currentAction = CurrentAction;
             this.CurrentActionTitle = CurrentActionTitle;
 
+            searchString = "";
+
             Students = new List<StudentModel>();
+            allStudents = new List<StudentModel>();
 
             try
             {
@@ -38,13 +62,34 @@ namespace ExamPreparation.ViewModels.TeacherViewModels
 
                 if (students.Count > 0)
                     foreach (Student s in students)
-                        Students.Add(new StudentModel(s));
+                        allStudents.Add(new StudentModel(s));
+
+                Students = allStudents;
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Произошла ошибка. " + ex.Message);
             }
             
+        }
+
+        private void findStudent()
+        {
+            if (SearchString.Length > 0)
+                Students = allStudents.Where(st => st.FullName.Contains(SearchString)).ToList();
+            else
+                Students = allStudents;
+        }
+
+        public ICommand FindStudentCommand
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    findStudent();
+                });
+            }
         }
 
         public ICommand CurrentActionCommand

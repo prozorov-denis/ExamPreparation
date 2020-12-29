@@ -51,29 +51,36 @@ namespace ExamPreparation.ViewModels
             {
                 return new RelayCommand(obj =>
                 {
-                    if (UserLogin != null && UserPassword != null)
+                    try
                     {
-                        List<User> users = db.User.ToList();
-
-                        User user = users.Where(u => u.Login == UserLogin).FirstOrDefault();
-
-                        if (user != null)
+                        if (UserLogin != null && UserPassword != null)
                         {
-                            if (user.Password == UserPassword.ToString())
-                                Success = true;
-                            if (Success)
+                            //List<User> users = db.User.ToList();
+
+                            User user = db.User.Where(u => u.Login == UserLogin).FirstOrDefault();
+
+                            if (user != null)
                             {
-                                CurrentUser = user;
-                                OnUserLogged();
+                                if (user.Password == UserPassword.ToString())
+                                    Success = true;
+                                if (Success)
+                                {
+                                    CurrentUser = user;
+                                    OnUserLogged();
+                                }
+                                else
+                                    MessageBox.Show("Неверный пароль.");
                             }
                             else
-                                MessageBox.Show("Неверный пароль.");
+                                MessageBox.Show("Пользователь с таким логином не найден.");
                         }
                         else
-                            MessageBox.Show("Пользователь с таким логином не найден.");
+                            MessageBox.Show("Введите логин и пароль.");
                     }
-                    else
-                        MessageBox.Show("Введите логин и пароль.");
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Произошла ошибка! " + ex.Message);
+                    }
                 });
             }
         }

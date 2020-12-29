@@ -22,7 +22,12 @@ namespace ExamPreparation.ViewModels.StudentViewModels
             set
             {
                 startDate = value;
-                if (examDate < startDate)
+                startDate = startDate.Date;
+
+                if (startDate < DateTime.Now)
+                    startDate = DateTime.Now.Date;
+
+                if (examDate <= startDate)
                 {
                     ExamDate = startDate.AddDays(1);
                 }
@@ -38,12 +43,19 @@ namespace ExamPreparation.ViewModels.StudentViewModels
             set
             {
                 examDate = value;
+                examDate = examDate.Date;
+
+                if (examDate <= DateTime.Now.Date)
+                    examDate = DateTime.Now.Date.AddDays(1);
+
+                if (startDate >= examDate)
+                    StartDate = examDate.AddDays(-1);
                 checkCanFormPlan();
                 OnPropertyChanged();
             }
         }
 
-        public bool AreDatesCorrect => ExamDate > StartDate && StartDate >= DateTime.Now.Date;
+        public bool AreDatesCorrect => ExamDate.Date > StartDate.Date && StartDate >= DateTime.Now.Date;
 
         private bool hasPlan;
         public bool HasPlan
@@ -144,6 +156,8 @@ namespace ExamPreparation.ViewModels.StudentViewModels
             }
             else
                 FormPlan();
+
+            checkCanFormPlan();
         }
 
         private void checkCanFormPlan()

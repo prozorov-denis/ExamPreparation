@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:ExamPreparation.Views"
         xmlns:vm="clr-namespace:ExamPreparation.ViewModels"
         mc:Ignorable="d"
-        Title="Подготовка к ОГЭ" Height="450" Width="600"
+        Title="Подготовка к ОГЭ" Height="500" Width="900"
         WindowStartupLocation="CenterScreen"
-        MinHeight="450" MinWidth="600">
+        MinHeight="500" MinWidth="900">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>

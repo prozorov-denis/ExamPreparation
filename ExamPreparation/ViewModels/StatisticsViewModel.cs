@@ -45,6 +45,11 @@ namespace ExamPreparation.ViewModels
             set
             {
                 startDate = value;
+                if (startDate > DateTime.Now)
+                    startDate = DateTime.Now.Date;
+
+                if (endDate < startDate)
+                    EndDate = startDate;
                 CheckDates();
                 OnPropertyChanged();
             }
@@ -69,10 +74,18 @@ namespace ExamPreparation.ViewModels
             set
             {
                 endDate = value;
-                endDate.AddHours(23);
-                endDate.AddMinutes(59);
-                endDate.AddSeconds(59);
-                endDate.AddMilliseconds(999);
+
+                endDate = endDate.Date;
+                endDate = endDate.AddHours(23);
+                endDate = endDate.AddMinutes(59);
+                endDate = endDate.AddSeconds(59);
+                endDate = endDate.AddMilliseconds(999);
+
+                if (endDate > DateTime.Now)
+                    endDate = DateTime.Now;
+      
+                if (startDate > endDate)
+                    StartDate = endDate.Date;
                 CheckDates();
                 OnPropertyChanged();
             }
